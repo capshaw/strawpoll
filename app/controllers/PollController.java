@@ -8,8 +8,7 @@ import play.data.Form;
 
 import views.html.*;
 
-import java.util.Date;
-import java.util.Random;
+import java.util.*;
 
 public class PollController extends Controller {
 
@@ -38,16 +37,17 @@ public class PollController extends Controller {
      */
     public static Result postPoll() {
 
-        /* Attempt to parse the request. If no question value in the request,
-         * it's a bad request. */
+        /* Parse the request and check for all required parameters. */
         DynamicForm requestData = Form.form().bindFromRequest();
         String question = requestData.get("question");
-        if (question == null) {
+        String choicesString = requestData.get("choices");
+        if (question == null || choicesString == null) {
             return badRequest();
         }
 
         /* Create the poll and put it in our cache. */
-        Poll poll = createPoll(question);
+        List<String> choices = Arrays.asList(choicesString.split("\n"));
+        Poll poll = createPoll(question, choices);
         Cache.set(pollIndex(poll.getId()), poll, POLL_VALID_MILLISECONDS / 1000);
         return redirect("/poll/" + poll.getId());
     }
@@ -58,12 +58,12 @@ public class PollController extends Controller {
      * @param question The question being answered in this poll.
      * @return The newly created poll object.
      */
-    private static Poll createPoll(String question) {
+    private static Poll createPoll(String question, List<String> choices) {
         Random random = new Random();
         Long id = (long) random.nextInt(Integer.MAX_VALUE);
         Date expires = new Date();
         expires.setTime(expires.getTime() + POLL_VALID_MILLISECONDS);
-        return new Poll(id, question, expires);
+        return new Poll(id, question, choices, expires);
     }
 
     /**
