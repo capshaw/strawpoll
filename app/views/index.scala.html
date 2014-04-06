@@ -1,7 +1,8 @@
-@(message: String)
+@main("Strawpoll - Home") {
 
-@main("Welcome to Play") {
-
-    @play20.welcome(message, style = "Java")
+    <form method="POST" action="/poll">
+        <input name="question" placeholder="Question" />
+        <input type="submit" />
+    </form>
 
 }
