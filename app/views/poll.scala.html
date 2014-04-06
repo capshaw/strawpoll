@@ -1,0 +1,9 @@
+@(poll: Poll)
+
+@main("Strawpoll - Poll") {
+
+    <p>The poll id is <strong>@poll.getId()</strong>.</p>
+    <p>The question was: <strong>@poll.getQuestion()</strong></p>
+    <p>This poll expires at <strong>@poll.getExpiration()</strong></p>
+
+}
