@@ -2,6 +2,7 @@ package controllers;
 
 import models.Poll;
 import play.cache.Cache;
+import play.libs.Json;
 import play.mvc.*;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -16,19 +17,19 @@ public class PollController extends Controller {
     public static final int POLL_VALID_MILLISECONDS = 1000 * 60 * 15;
 
     /**
-     * Render a GET request for a particular poll, keyed on ID in hex format.
+     * Render a GET request for a particular poll, keyed by id.
      * @param id The poll's id.
      * @return A rendered poll page if the poll exists, 404 page otherwise.
      */
     public static Result getPoll(Long id) {
-        Poll p = (Poll)Cache.get(pollIndex(id));
+        Poll poll = (Poll)Cache.get(pollIndex(id));
 
         /* Show a generic 404 error if the poll doesn't exist. */
-        if (p == null) {
+        if (poll == null) {
             return ok(error404.render());
         }
 
-        return ok(poll.render(p));
+        return ok(Json.toJson(poll));
     }
 
     /**
@@ -49,7 +50,7 @@ public class PollController extends Controller {
         List<String> choices = Arrays.asList(choicesString.split("\n"));
         Poll poll = createPoll(question, choices);
         Cache.set(pollIndex(poll.getId()), poll, POLL_VALID_MILLISECONDS / 1000);
-        return redirect("/poll/" + poll.getId());
+        return ok(Json.toJson(poll));
     }
 
 
