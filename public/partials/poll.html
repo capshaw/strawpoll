@@ -1,6 +1,6 @@
 <p>The poll id is <strong>{{poll.id}}</strong>.</p>
 <p>The question was: <strong>{{poll.question}}</strong></p>
 <ul>
-    <li ng-repeat="choice in poll.choices">{{choice}}</li>
+    <li ng-repeat="choice in poll.choices track by $index">{{choice}}</li>
 </ul>
 <p>This poll expires at <strong>{{poll.expiration}}</strong></p>
