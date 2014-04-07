@@ -33,7 +33,7 @@ section {
 
 .button {
     background: $accent;
-    border: none;
+    border: 2px solid $accent;
     padding: $u;
     display: block;
     color: lighten($accent, 50%);
@@ -55,7 +55,7 @@ section {
 .input-container {
 
     position: relative;
-    padding: 0 $u;
+    padding: 0 $u + 2px;
     margin: 0 0 $u 0;
 
     input {

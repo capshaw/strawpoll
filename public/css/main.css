@@ -24,7 +24,7 @@ section {
 
 .button {
   background: #333355;
-  border: none;
+  border: 2px solid #333355;
   padding: 20px;
   display: block;
   color: #b5b5d2;
@@ -41,7 +41,7 @@ section {
 
 .input-container {
   position: relative;
-  padding: 0 20px;
+  padding: 0 22px;
   margin: 0 0 20px 0; }
   .input-container input {
     display: block;
