@@ -24,9 +24,8 @@ public class PollController extends Controller {
     public static Result getPoll(Long id) {
         Poll poll = (Poll)Cache.get(pollIndex(id));
 
-        /* Show a generic 404 error if the poll doesn't exist. */
         if (poll == null) {
-            return ok(error404.render());
+            return badRequest();
         }
 
         return ok(Json.toJson(poll));

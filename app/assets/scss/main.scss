@@ -1,0 +1,107 @@
+$accent: #335;
+$u: 20px;
+
+body, html {
+    background: #efefef;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+}
+
+a {
+    color: $accent;
+    text-decoration: none;
+}
+
+nav {
+    padding: $u;
+    background: #efefef;
+
+    .title {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        font-size: 2em;
+        color: $accent;
+        text-decoration: none;
+    }
+
+}
+
+.button {
+    background: $accent;
+    border: none;
+    padding: $u;
+    display: block;
+    color: lighten($accent, 50%);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.3em;
+    text-align: center;
+
+    -webkit-transition: all 0.3s;
+    -moz-transition:    all 0.3s;
+    -o-transition:      all 0.3s;
+    -webkit-transition: all 0.3s;
+
+    &:hover {
+        background: lighten($accent, 10%);
+    }
+}
+
+.input-container {
+
+    position: relative;
+    padding: 0 $u;
+    margin: 0 0 $u 0;
+
+    input {
+        display: block;
+        width: 100%;
+        font-size: 1.3em;
+        outline: none;
+        margin-left: -$u;
+        font-family: 'Open Sans', sans-serif;
+
+        border: 2px solid #ddd;
+
+        padding: $u;
+
+        box-sizing:         content-box;
+        -ms-box-sizing:     content-box;
+        -moz-box-sizing:    content-box;
+        -webkit-box-sizing: content-box;
+
+        -webkit-transition: all 0.3s;
+        -moz-transition:    all 0.3s;
+        -o-transition:      all 0.3s;
+        -webkit-transition: all 0.3s;
+
+        &:focus {
+            outline: none;
+            border: 2px solid $accent;
+            color: $accent;
+        }
+    }
+
+    .modify {
+        position: absolute;
+        top: $u;
+        right: $u;
+        font-size: 2.2em;
+
+        &.light {
+            color: #aaa;
+        }
+    }
+}
+
+section {
+    padding: $u;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: #fff;
+}

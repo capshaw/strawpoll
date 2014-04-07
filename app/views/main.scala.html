@@ -7,9 +7,21 @@
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("img/favicon.png")">
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400,300' rel='stylesheet' type='text/css'>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     </head>
     <body>
-        <ng-view></ng-view>
+        <div class="container">
+            <nav>
+                <a href="/" class="title">
+                    <i class="fa fa-clock-o"></i>
+                    Strawpoll
+                </a>
+            </nav>
+            <section>
+                <ng-view></ng-view>
+            </section>
+        </div>
     </body>
 </html>
 

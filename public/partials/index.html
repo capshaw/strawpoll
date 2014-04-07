@@ -1,3 +1,9 @@
-<input ng-model="question" placeholder="Question" />
-<textarea ng-model="choices" placeholder="Choices"></textarea>
-<button ng-click="createPoll()">Create new poll</button>
+<div class="input-container">
+    <input ng-model="question" placeholder="What's your question?" />
+</div>
+<div class="input-container" ng-repeat="choice in choices">
+    <input ng-model="choice.val" placeholder="{{$index + 1}}.">
+    <a ng-show="$index != choices.length - 1" href="" ng-click="removeChoice($index)" class="modify light fa fa-minus-circle"></a>
+    <a ng-show="$index == choices.length - 1" href="" ng-click="addChoice()" class="modify fa fa-plus-circle"></a>
+</div>
+<a class="button" href="" ng-click="createPoll()">Create New Poll</a>
