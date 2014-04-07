@@ -36,6 +36,17 @@ nav {
   .button:hover {
     background: #464675; }
 
+.side-nav {
+  position: absolute;
+  right: 0;
+  top: -60px; }
+  .side-nav a {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block; }
+
 .input-container {
   position: relative;
   padding: 0 22px;
@@ -70,6 +81,7 @@ nav {
       color: #aaa; }
 
 section {
+  position: relative;
   padding: 20px; }
 
 .timer {

@@ -48,6 +48,20 @@ nav {
     }
 }
 
+.side-nav {
+    position: absolute;
+    right: 0;
+    top: -$u * 3;
+
+    a {
+        width: 2 * $u;
+        height: 2 * $u;
+        text-align: center;
+        line-height: 2 * $u;
+        display: inline-block;
+    }
+}
+
 .input-container {
 
     position: relative;
@@ -96,6 +110,7 @@ nav {
 }
 
 section {
+    position: relative;
     padding: $u;
 }
 
