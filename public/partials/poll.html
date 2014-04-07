@@ -1,3 +1,9 @@
+<div class="timer">
+    <strong>Time Remaining</strong><br>
+    <span ng-show="time_left.hours > 0">{{time_left.hours}}:</span><!--
+    --><span ng-show="time_left.minutes > 0">{{time_left.minutes}}:</span><!--
+    --><span>{{time_left.seconds}}</span>
+</div>
 <p>The poll id is <strong>{{poll.id}}</strong>.</p>
 <p>The question was: <strong>{{poll.question}}</strong></p>
 <ul>

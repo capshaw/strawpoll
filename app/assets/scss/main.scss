@@ -25,7 +25,10 @@ nav {
         color: $accent;
         text-decoration: none;
     }
+}
 
+section {
+    padding: $u;
 }
 
 .button {
@@ -96,8 +99,13 @@ nav {
     }
 }
 
-section {
-    padding: $u;
+.timer {
+    background: #eee;
+    padding: $u / 2;
+    border-radius: 5px;
+    color: #333;
+    float: right;
+    text-align: center;
 }
 
 .container {

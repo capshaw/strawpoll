@@ -1,16 +1,38 @@
 'use strict';
 
-pollApp.controller('PollCtrl', function PollCtrl($scope, $http, $routeParams, $location) {
+pollApp.controller('PollCtrl', function PollCtrl($scope, $http, $routeParams, $location, $timeout) {
     $http({
         method: 'GET',
         url: '/poll/' + $routeParams.pollId
     }).
     success(function(data, status, headers, config) {
         $scope.poll = data;
+        $scope.clockTick();
     }).
     error(function(data, status, headers, config) {
         $location.path('/');
     });
+
+    $scope.clockTick = function () {
+        var current_time = (new Date()).getTime();
+        var diff = $scope.poll.expiration - current_time;
+        $scope.time_left = $scope.getTimeTuple(Math.max(0, diff));
+        $timeout($scope.clockTick, 1000);
+    };
+
+    $scope.getTimeTuple = function (milliseconds) {
+        var tuple = {
+            seconds: Math.floor((milliseconds / 1000) % 60),
+            minutes: Math.floor((milliseconds / (1000*60)) % 60),
+            hours:   Math.floor((milliseconds / (1000*60*60)) % 24)
+        };
+
+        if (tuple.seconds < 10) {
+            tuple.seconds = "0" + tuple.seconds;
+        }
+
+        return tuple;
+    };
 });
 
 pollApp.controller('IndexCtrl', function IndexCtrl($scope, $http, $location) {

@@ -19,6 +19,9 @@ nav {
     color: #333355;
     text-decoration: none; }
 
+section {
+  padding: 20px; }
+
 .button {
   background: #333355;
   border: none;
@@ -69,8 +72,13 @@ nav {
     .input-container .modify.light {
       color: #aaa; }
 
-section {
-  padding: 20px; }
+.timer {
+  background: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  color: #333;
+  float: right;
+  text-align: center; }
 
 .container {
   max-width: 1000px;
