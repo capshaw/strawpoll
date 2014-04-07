@@ -27,10 +27,6 @@ nav {
     }
 }
 
-section {
-    padding: $u;
-}
-
 .button {
     background: $accent;
     border: 2px solid $accent;
@@ -97,6 +93,10 @@ section {
             color: #aaa;
         }
     }
+}
+
+section {
+    padding: $u;
 }
 
 .timer {

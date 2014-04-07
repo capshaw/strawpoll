@@ -7,8 +7,6 @@ import play.mvc.*;
 import play.data.DynamicForm;
 import play.data.Form;
 
-import views.html.*;
-
 import java.util.*;
 
 public class PollController extends Controller {
@@ -22,13 +20,11 @@ public class PollController extends Controller {
      * @return A rendered poll page if the poll exists, 404 page otherwise.
      */
     public static Result getPoll(Long id) {
-        Poll poll = (Poll)Cache.get(pollIndex(id));
-
-        if (poll == null) {
+        if (!cacheContainsPoll(id)) {
             return badRequest();
         }
 
-        return ok(Json.toJson(poll));
+        return ok(Json.toJson(getPollFromCache(id)));
     }
 
     /**
@@ -48,10 +44,27 @@ public class PollController extends Controller {
         /* Create the poll and put it in our cache. */
         List<String> choices = Arrays.asList(choicesString.split("\n"));
         Poll poll = createPoll(question, choices);
-        Cache.set(pollIndex(poll.getId()), poll, POLL_VALID_MILLISECONDS / 1000);
+        putPollIntoCache(poll);
+
         return ok(Json.toJson(poll));
     }
 
+    // TODO: move these into model or ... ?
+    public static boolean cacheContainsPoll(Long id) {
+        return (Cache.get(pollIndex(id)) != null);
+    }
+
+    public static Poll getPollFromCache(Long id) {
+        return (Poll)Cache.get(pollIndex(id));
+    }
+
+    public static void putPollIntoCache(Poll poll) {
+        Date expires = poll.getExpiration();
+        Date now = new Date();
+        int remainingSeconds = (int) ((expires.getTime() - now.getTime()) / 1000);
+        Cache.set(pollIndex(poll.getId()), poll, remainingSeconds);
+    }
+    // TODO: see previous TODO
 
     /**
      * Helper function to create a new poll given a poll question.
