@@ -4,13 +4,10 @@
     --><span>{{time_left.minutes}}:</span><!--
     --><span>{{time_left.seconds}}</span>
 </div>
-<p>The poll id is <strong>{{poll.id}}</strong>.</p>
-<p>The question was: <strong>{{poll.question}}</strong></p>
-<ul>
+<h1>{{poll.question}}</h1>
+<ul class="answers">
     <li ng-repeat="choice in poll.choices track by $index">
-        {{choice}}
+        <a ng-click="vote($index)" href="">{{choice}}</a>
         ({{poll.votes[$index]}} votes)
-        <a ng-click="vote($index)" href="">+</a>
     </li>
 </ul>
-<p>This poll expires at <strong>{{poll.expiration}}</strong></p>

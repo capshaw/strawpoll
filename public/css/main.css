@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body, html {
   background: #efefef;
   font-family: 'Open Sans', sans-serif;
@@ -9,6 +10,20 @@ a {
   color: #333355;
   text-decoration: none; }
 
+ul.answers {
+  list-style-type: none;
+  display: table;
+  font-size: 1.2em; }
+  ul.answers li:before {
+    content: "–";
+    position: relative;
+    left: -10px;
+    color: #ccc;
+    display: table-cell; }
+  ul.answers li {
+    line-height: 2em;
+    display: table-row; }
+
 nav {
   padding: 20px;
   background: #efefef; }
@@ -18,6 +33,10 @@ nav {
     font-size: 2em;
     color: #333355;
     text-decoration: none; }
+
+h1 {
+  font-weight: bold;
+  margin: 20px; }
 
 .button {
   background: #333355;

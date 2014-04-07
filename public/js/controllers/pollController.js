@@ -14,10 +14,22 @@ pollApp.controller('PollCtrl', function PollCtrl($scope, $http, $routeParams,
     };
 
     $scope.clockTick = function() {
+
+        /* Update clock countdown. */
         var current_time = (new Date()).getTime();
         var diff = $scope.poll.expiration - current_time;
         $scope.time_left = $scope.getTimeTuple(Math.max(0, diff));
-        $timeout($scope.clockTick, 1000);
+
+        /* If there is still time remaining, update the data and set the next
+         * clock tick timeout.*/
+        if (diff > 0) {
+            // TODO: use websockets instead (push instead of pull)
+            apiService.getPoll($scope.id).then(function(data){
+                $scope.poll = data;
+            });
+
+            $timeout($scope.clockTick, 1000);
+        }
     };
 
     $scope.getTimeTuple = function(milliseconds) {
@@ -35,9 +47,7 @@ pollApp.controller('PollCtrl', function PollCtrl($scope, $http, $routeParams,
     };
 
     $scope.vote = function(choice) {
-        apiService.castVote($scope.id, choice).then(function() {
-            console.log("success!");
-        });
+        apiService.castVote($scope.id, choice);
     };
 
     $scope.getPollInitial();

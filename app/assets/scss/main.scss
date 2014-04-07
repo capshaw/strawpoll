@@ -14,6 +14,25 @@ a {
     text-decoration: none;
 }
 
+ul.answers {
+    list-style-type: none;
+    display: table;
+    font-size: 1.2em;
+
+    li:before {
+        content: "–";
+        position: relative;
+        left: -10px;
+        color: #ccc;
+        display: table-cell;
+    }
+
+    li {
+        line-height: 2em;
+        display: table-row;
+    }
+}
+
 nav {
     padding: $u;
     background: #efefef;
@@ -25,6 +44,11 @@ nav {
         color: $accent;
         text-decoration: none;
     }
+}
+
+h1 {
+    font-weight: bold;
+    margin: $u;
 }
 
 .button {
