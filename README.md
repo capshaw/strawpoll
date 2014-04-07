@@ -1,4 +1,4 @@
-# Strawpoll
+![Alt text](/public/img/logo.png "Strawpoll")
 
 A test project to learn about the [Play framework](http://www.playframework.com/).
 
