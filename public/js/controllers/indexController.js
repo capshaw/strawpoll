@@ -12,7 +12,7 @@ pollApp.controller('IndexCtrl', function IndexCtrl($scope, $http, $location,
         }).join("\n");
 
         apiService.postPoll($scope.question, choices).then(function(data){
-            $location.path('/' + data.id);
+            $location.path('/' + data.id.toString(16));
         }, function(){
             console.log('error: poll POST failed.');
         });

@@ -4,7 +4,8 @@ pollApp.controller('PollCtrl', function PollCtrl($scope, $http, $routeParams,
     $location, $timeout, apiService) {
 
     $scope.getPollInitial = function() {
-        apiService.getPoll($routeParams.pollId).then(function(data){
+        $scope.id = parseInt($routeParams.pollId, 16);
+        apiService.getPoll($scope.id).then(function(data){
             $scope.poll = data;
             $scope.clockTick();
         }, function(data){
@@ -34,7 +35,7 @@ pollApp.controller('PollCtrl', function PollCtrl($scope, $http, $routeParams,
     };
 
     $scope.vote = function(choice) {
-        apiService.castVote($routeParams.pollId, choice).then(function() {
+        apiService.castVote($scope.id, choice).then(function() {
             console.log("success!");
         });
     };
