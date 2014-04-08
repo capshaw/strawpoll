@@ -1,5 +1,7 @@
 'use strict';
 
+var POLL_VALID_MILLISECONDS = 1000 * 60 * 15;
+
 pollApp.controller('PollCtrl', function PollCtrl($scope, $http, $routeParams,
     $location, $timeout, apiService) {
 
@@ -19,6 +21,10 @@ pollApp.controller('PollCtrl', function PollCtrl($scope, $http, $routeParams,
         var current_time = (new Date()).getTime();
         var diff = $scope.poll.expiration - current_time;
         $scope.time_left = $scope.getTimeTuple(Math.max(0, diff));
+
+        $scope.progressBarStyle = {
+            right: Math.max((diff / POLL_VALID_MILLISECONDS * 100), 0) + "%"
+        };
 
         /* If there is still time remaining, update the data and set the next
          * clock tick timeout.*/

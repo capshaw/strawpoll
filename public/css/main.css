@@ -66,6 +66,16 @@ h1 {
     line-height: 40px;
     display: inline-block; }
 
+.progress-bar {
+  height: 0;
+  border-top: 4px solid #ccc;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0; }
+  .progress-bar.colored {
+    border-top: 4px solid #7575ac; }
+
 .input-container {
   position: relative;
   padding: 0 22px;

@@ -86,6 +86,20 @@ h1 {
     }
 }
 
+.progress-bar {
+    height: 0;
+
+    border-top: 4px solid #ccc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    &.colored {
+        border-top: 4px solid lighten($accent, 30%);
+    }
+}
+
 .input-container {
 
     position: relative;
