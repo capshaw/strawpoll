@@ -8,8 +8,8 @@
 </div>
 <h1>{{poll.question}}</h1>
 <ul class="answers">
-    <li ng-repeat="choice in poll.choices track by $index">
-        <a ng-click="vote($index)" href="">{{choice}}</a>
-        ({{poll.votes[$index]}} votes)
+    <li ng-repeat="choice in poll.answers">
+        <a ng-click="vote(choice.id)" href="">{{choice.text}}</a>
+        ({{choice.votes}} votes)
     </li>
 </ul>

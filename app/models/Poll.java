@@ -9,26 +9,24 @@ public class Poll {
 
     private Long id;
     private String question;
-    private List<String> choices;
-    private Map<Integer, Integer> votes;
+    private Map<Integer, Answer> answers;
     private Date expiration;
 
-    public Poll(Long id, String question, List<String> choices, Date expiration) {
+    public Poll(Long id, String question, List<String> questions, Date expiration) {
         this.id = id;
         this.question = question;
         this.expiration = expiration;
-        this.choices = choices;
 
         /* Set all vote counts to empty. */
-        votes = new HashMap<Integer, Integer>();
-        for (int i = 0; i < choices.size(); i++) {
-            votes.put(i, 0);
+        answers = new HashMap<Integer, Answer>();
+        for (int i = 0; i < questions.size(); i++) {
+            answers.put(i, new Answer(i, questions.get(i), 0));
         }
     }
 
     public void addVote(int key) {
-        if (votes.containsKey(key)) {
-            votes.put(key, votes.get(key) + 1);
+        if (answers.containsKey(key)) {
+            answers.get(key).addVote();
         }
     }
 
@@ -44,11 +42,7 @@ public class Poll {
         return id;
     }
 
-    public List<String> getChoices() {
-        return choices;
-    }
-
-    public Map<Integer, Integer> getVotes() {
-        return votes;
+    public Map<Integer, Answer> getAnswers() {
+        return answers;
     }
 }
